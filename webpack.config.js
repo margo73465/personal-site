@@ -1,8 +1,12 @@
+import path from 'path';
+
 module.exports = {
-  entry: './src/app.js',
+  entry: {
+    app: ['./src/app.js']
+  },
   output: {
-    path: './build',
-    filename: 'app.bundle.js',
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js',
   },
   module: {
     loaders: [{
@@ -12,3 +16,4 @@ module.exports = {
     }]
   }
 }
+
