@@ -1,12 +1,15 @@
-var express = require('express');
-var app = express();
+import express from 'express';
+import path from 'path';
+const app = express();
 
-var isProduction = process.env.NODE_ENV === 'production';
-var port = isProduction ? process.env.PORT : 3000;
+const isProduction = process.env.NODE_ENV === 'production';
+const port = isProduction ? process.env.PORT : 3000;
 
-app.get('/', function (req, res) {
+app.use(express.static(path.normalize(__dirname + '/build')));
+app.get('/', (req, res) => {
+  res.sendFile('index.html', { root: __dirname });
 });
 
-app.listen(port, function () {
+app.listen(port, () => {
   console.log('Server running on port ' + port);
 });
